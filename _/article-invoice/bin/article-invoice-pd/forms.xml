@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<forms>
+  <form task="submit invoice task" form="submit invoice task.xhtml"/>
+  <form task="financial controller task" form="financial controller task.xhtml"/>
+</forms>

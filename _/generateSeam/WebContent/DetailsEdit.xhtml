@@ -1,0 +1,140 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="details" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{detailsHome.managed ? 'Edit' : 'Add'} Details</f:facet>
+
+
+            <s:decorate id="idField" template="layout/edit.xhtml">
+                <ui:define name="label">Id</ui:define>
+                <h:inputText id="id"
+                       required="true"
+                       disabled="#{detailsHome.managed}"
+                          value="#{detailsHome.instance.id}">
+                    <a:support event="onblur" reRender="idField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <s:decorate id="emailField" template="layout/edit.xhtml">
+                <ui:define name="label">Email</ui:define>
+                <h:inputText id="email"
+                           size="25"
+                      maxlength="25"
+                          value="#{detailsHome.instance.email}">
+                    <a:support event="onblur" reRender="emailField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="passField" template="layout/edit.xhtml">
+                <ui:define name="label">Pass</ui:define>
+                <h:inputText id="pass"
+                           size="25"
+                      maxlength="25"
+                          value="#{detailsHome.instance.pass}">
+                    <a:support event="onblur" reRender="passField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="zipField" template="layout/edit.xhtml">
+                <ui:define name="label">Zip</ui:define>
+                <h:inputText id="zip"
+                           size="25"
+                      maxlength="25"
+                          value="#{detailsHome.instance.zip}">
+                    <a:support event="onblur" reRender="zipField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{detailsHome.persist}"
+                       disabled="#{!detailsHome.wired}"
+                       rendered="#{!detailsHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{detailsHome.update}"
+                       rendered="#{detailsHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{detailsHome.remove}"
+                      immediate="true"
+                       rendered="#{detailsHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Details.xhtml"
+                rendered="#{detailsHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty detailsFrom ? 'DetailsList' : detailsFrom}.xhtml"
+                rendered="#{!detailsHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Testentity *" labelClass="required">
+    <div class="association" id="testentityParent">
+
+        <h:outputText value="There is no testentity associated with this details."
+                   rendered="#{detailsHome.instance.testentity == null}"/>
+
+        <rich:dataTable var="_testentity"
+                   value="#{detailsHome.instance.testentity}"
+                rendered="#{detailsHome.instance.testentity != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="testentityTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_testentity.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_testentity.name}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button value="#{detailsHome.instance.testentity != null ? 'Change' : 'Select'} testentity"
+                       view="/TestentityList.xhtml">
+                <f:param name="from" value="DetailsEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

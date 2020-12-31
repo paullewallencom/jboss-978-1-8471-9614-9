@@ -1,0 +1,101 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Testentity Details</f:facet>
+
+        <s:decorate id="id" template="layout/display.xhtml">
+            <ui:define name="label">Id</ui:define>
+            <h:outputText value="#{testentityHome.instance.id}"/>
+        </s:decorate>
+
+        <s:decorate id="name" template="layout/display.xhtml">
+            <ui:define name="label">Name</ui:define>
+            <h:outputText value="#{testentityHome.instance.name}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/TestentityEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty testentityFrom ? 'TestentityList' : testentityFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Detailses</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="detailsesChildren">
+
+        <h:outputText value="There are no detailses associated with this testentity."
+                   rendered="#{empty testentityHome.detailses}"/>
+
+        <rich:dataTable value="#{testentityHome.detailses}"
+                       var="_details"
+                  rendered="#{not empty testentityHome.detailses}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="detailsesTable">
+            <rich:column sortBy="#{_details.id}">
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_details.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_details.email}">
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{_details.email}"/>
+            </rich:column>
+            <rich:column sortBy="#{_details.pass}">
+                <f:facet name="header">Pass</f:facet>
+                <h:outputText value="#{_details.pass}"/>
+            </rich:column>
+            <rich:column sortBy="#{_details.zip}">
+                <f:facet name="header">Zip</f:facet>
+                <h:outputText value="#{_details.zip}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectdetails"
+                     value="Select"
+                      view="/Details.xhtml">
+                    <f:param name="detailsId"
+                            value="#{_details.id}"/>
+                    <f:param name="detailsFrom" value="Testentity"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add details"
+                view="/DetailsEdit.xhtml">
+            <f:param name="testentityId"
+                    value="#{testentityHome.instance.id}"/>
+            <f:param name="detailsFrom" value="Testentity"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

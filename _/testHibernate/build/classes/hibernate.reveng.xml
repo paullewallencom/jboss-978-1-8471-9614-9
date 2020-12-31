@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"
+			length="25" not-null="true">
+		</sql-type>
+	</type-mapping>
+	<table-filter match-name="parent" match-schema="public"></table-filter>
+	<table-filter match-name="child" match-schema="public"></table-filter>
+	<table schema="public" name="parent">
+		<column name="parent_name" jdbc-type=''></column>
+		<column name="parent_surname" jdbc-type=''></column>
+	</table>
+	<table schema="public" name="child">
+		<column name="fid" jdbc-type=''></column>
+		<column name="child_name" jdbc-type=''></column>
+		<column name="child_surname" jdbc-type=''></column>
+		<column name="child_age" jdbc-type=''></column>
+	</table>
+</hibernate-reverse-engineering>

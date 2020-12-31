@@ -1,0 +1,15 @@
+#Tue Jan 27 23:57:55 PST 2009
+action.package=org.domain.testSeam.session
+action.sources=/testSeam/src/action
+eclipse.preferences.version=1
+model.package=org.domain.testSeam.entity
+model.sources=/testSeam/src/model
+seam.project.connection.profile=PostgreSQL Connection
+seam.project.deployment.type=war
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/testSeam/WebContent
+seam.runtime.name=JBoss Seam Runtime
+seam.test.creating=true
+seam.test.project=testSeam-test
+test.package=org.domain.testSeam.test
+test.sources=/testSeam-test/test-src

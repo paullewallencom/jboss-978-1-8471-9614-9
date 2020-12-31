@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition name="INVOICE-PD">
+
+
+	<swimlane name="authors">
+		<assignment actor-id="article's author"></assignment>
+	</swimlane>/jbpm-console/upload<start-state name="submit article invoice">
+		<task name="submit invoice task" duedate="5 business days" priority="highest" swimlane="authors"></task>
+		<transition to="financial controller" name="submit request"></transition>
+	</start-state>
+
+
+	<task-node name="financial controller">
+		<task name="financial controller task" duedate="2 business days" swimlane="financialdepartment"></task>
+		<transition to="fork1" name="accept invoice"></transition>
+		<transition to="send e-mail" name="reject invoice"></transition>
+	</task-node>
+
+	<node name="register invoice">
+		<action name="register invoice action" class="articles.invoices.actions.RegisterInvoiceAction"></action>
+		<transition to="join1" name="leave register"></transition>
+	</node>
+
+	<node name="pay the author">
+		<action name="pay the author action" class="articles.invoices.actions.PayInvoiceAction"></action>
+		<transition to="join1" name="leave payment"></transition>
+	</node>
+
+	<fork name="fork1">
+		<transition to="register invoice" name="register"></transition>
+		<transition to="pay the author" name="payment"></transition>
+	</fork>
+
+	<join name="join1">
+		<transition to="the end" name="process end"></transition>
+	</join>
+
+	<mail-node name="send e-mail" to="#{author_email}">
+		<subject>
+			Your invoice was rejected
+		</subject>
+		<text>
+			Hello dear author,
+
+  It looks like our financial controller has rejected your invoice.
+  For more details please contact us to the phone 555-3929322.
+
+Best,
+WebIT Team
+
+		</text>
+		<transition to="the end" name="leave reject invoice"></transition>
+	</mail-node>
+
+
+	<end-state name="the end"></end-state>
+
+
+</process-definition>

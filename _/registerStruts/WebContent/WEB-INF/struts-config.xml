@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+                               "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+ <data-sources/>
+ <form-beans>
+  <form-bean name="registerFormBean" type="register.RegisterFormBean"/>
+ </form-beans>
+ <global-exceptions>
+  <exception key="exception.key" path="/WEB-INF/error.jsp" type="java.lang.Exception"/>
+ </global-exceptions>
+ <global-forwards>
+  <forward name="start" path="/pages/register.jsp"/>
+ </global-forwards>
+ <action-mappings>
+  <action input="/pages/register.jsp" name="registerFormBean"
+   path="/success" scope="request" type="register.RegisterFormAction">
+   <forward name="success" path="/pages/success.jsp"/>
+  </action>
+ </action-mappings>
+ <controller/>
+ <message-resources parameter="register.errorsProperties"/>
+ <plug-in className="org.apache.struts.tiles.TilesPlugin">
+  <set-property property="moduleAware" value="true"/>
+  <set-property property="definitions-config" value="/META-INF/register-tiles.xml"/>
+ </plug-in>
+ <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  <set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml"/>
+ </plug-in>
+</struts-config>

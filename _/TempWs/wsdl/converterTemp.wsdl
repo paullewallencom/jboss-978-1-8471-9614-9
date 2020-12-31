@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://temperature.ws.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="converterTemp" targetNamespace="http://temperature.ws.com">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://temperature.ws.com">
+      <xsd:element name="toCelsius">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="fahrenheit" type="xsd:float"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="toCelsiusResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="returnFahrenheit" type="xsd:float"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="toFahrenheit">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="celsius" 
+                  type="xsd:float"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="toFahrenheitResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="returnCelsius" 
+                  type="xsd:float"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  
+  <wsdl:message name="toCelsiusRequest">
+    <wsdl:part element="tns:toCelsius" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="toCelsiusResponse">
+    <wsdl:part element="tns:toCelsiusResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="toFahrenheitRequest">
+  	<wsdl:part name="parameters" element="tns:toFahrenheit"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="toFahrenheitResponse">
+  	<wsdl:part name="parameters" element="tns:toFahrenheitResponse"></wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:portType name="TempWs">
+    <wsdl:operation name="toCelsius">
+      <wsdl:input message="tns:toCelsiusRequest"/>
+      <wsdl:output message="tns:toCelsiusResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="toFahrenheit">
+    	<wsdl:input message="tns:toFahrenheitRequest"></wsdl:input>
+    	<wsdl:output message="tns:toFahrenheitResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TempWsSOAP" type="tns:TempWs">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="toCelsius">
+  		<soap:operation
+  			soapAction="http://temperature.ws.com/toCelsius" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="toFahrenheit">
+  		<soap:operation
+  			soapAction="http://temperature.ws.com/toFahrenheit" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="TempWsService">
+    <wsdl:port binding="tns:TempWsSOAP" name="converterTempSOAP">
+      <soap:address location="http://127.0.0.1:8080/TempWs/TempWs"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+                                   "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+ <definition name="tiles.layout" path="/WEB-INF/layout.jsp">
+  <put name="tiles.header" value="/WEB-INF/header.jsp"/>
+  <put name="tiles.footer" value="/WEB-INF/footer.jsp"/>
+  <put name="tiles.body"/>
+  <put name="tiles.title"/>
+ </definition>
+ <definition extends="tiles.layout" name="tiles.register">
+  <put name="tiles.title" value="Provide the following info here:"/>
+  <put name="tiles.body" value="/WEB-INF/registerbody.jsp"/>
+ </definition>
+ <definition extends="tiles.layout" name="tiles.success">
+  <put name="tiles.title" value="The provided info are:"/>
+  <put name="tiles.body" value="/WEB-INF/successbody.jsp"/>
+ </definition>
+</tiles-definitions>

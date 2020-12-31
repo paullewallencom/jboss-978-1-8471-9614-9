@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd">
+ <providers>
+  <jms-provider connection-factory="ConnectionFactory" name="JBossMQ">
+   <jms-bus busid="JMSGatewayBus">
+    <jms-message-filter dest-name="queue/ESBJMSApp_queue_gateway" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="ESBAwareBus">
+    <jms-message-filter dest-name="queue/ESBJMSApp_queue_not_gateway" dest-type="QUEUE"/>
+   </jms-bus>
+  </jms-provider>
+ </providers>
+ <services>
+  <service category="MyServices"
+   description="An JBossESB project developed through ESB Tools" name="TestJBossESB">
+   <listeners>
+    <jms-listener busidref="JMSGatewayBus" is-gateway="true" name="JMSGatewayListener"/>
+    <jms-listener busidref="ESBAwareBus" is-gateway="false" name="ESBAwareListener"/>
+   </listeners>
+   <actions mep="OneWay">
+    <action class="org.jboss.soa.esb.actions.SystemPrintln" name="esbAction_1">
+     <property name="message"/>
+    </action>
+    <action class="esb.actions.MySystemPrintln" name="esbAction_2" process="printlnMessage"/>
+   </actions>
+  </service>
+ </services>
+</jbossesb>

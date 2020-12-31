@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="INVOICE-PD" width="664" height="435">
+  <node name="submit article invoice" x="168" y="12" width="169" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="the end" x="180" y="360" width="132" height="36"/>
+  <node name="financial controller" x="180" y="84" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="283" h1="0" w2="1" h2="-120"/>
+    </edge>
+  </node>
+  <node name="register invoice" x="72" y="204" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="pay the author" x="300" y="204" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="fork1" x="120" y="156" width="252" height="24">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="join1" x="120" y="288" width="252" height="24">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="send e-mail" x="444" y="204" width="169" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="0" h1="155" w2="264" h2="-1"/>
+    </edge>
+  </node>
+</root-container>

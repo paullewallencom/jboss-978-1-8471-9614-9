@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- The jbossesb-properties.xml that provides settings for ESBJMSApp application-->
+<esb
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="jbossesb-1_0.xsd">
+    <!-- core settings -->
+  <properties name="core">
+        <!--  Indicate server type and URL -->
+	<property name="org.jboss.soa.esb.jndi.server.type" value="jboss"/>
+	<property name="org.jboss.soa.esb.jndi.server.url"  value="localhost"/>
+    </properties>
+    
+    <!-- Service Registry settings. We use JARX+Scout+jUDDI-RMI. -->
+    <properties name="registry">      
+    
+    <!-- By default we use the JAXR API. -->
+    <property name="org.jboss.soa.esb.registry.implementationClass" 
+  	 value="org.jboss.internal.soa.esb.services.registry.JAXRRegistryImpl"/> 
+         
+    <!-- Pick the class that will provide JAXR implementation to be 
+    used. By default, this is Scout, therefore we indicate the scout 
+    factory -->
+    <property name="org.jboss.soa.esb.registry.factoryClass" value="org.apache.ws.scout.registry.ConnectionFactoryImpl"/>
+    
+    <!-- Tell the JAXR implementation the location of the registry or 
+    repository for querying and updating -->
+    <property name="org.jboss.soa.esb.registry.queryManagerURI" value="jnp://localhost:1099/InquiryService?org.apache.juddi.registry.rmi.Inquiry#inquire"/>    		
+    <property name="org.jboss.soa.esb.registry.lifeCycleManagerURI" value="jnp://localhost:1099/PublishService?org.apache.juddi.registry.rmi.Publish#publish" />
+    		
+	<!-- Indicate username and password for the UDDI -->
+   <property name="org.jboss.soa.esb.registry.user" value="jbossesb"/>
+   	<property name="org.jboss.soa.esb.registry.password" value="password"/>
+    		
+   	<!-- Indicate the transport class that should be used for 
+   communication between Scout and jUDDI. We choosed RMI, but SOAP, 
+   SAAJ and embedded Java are also available -->	    
+   	<property name="org.jboss.soa.esb.scout.proxy.transportClass" value="org.apache.ws.scout.transport.RMITransport"/>
+ </properties>    
+</esb>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 31, 2009 10:07:55 PM by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="mappings_re.Parent" table="parent" schema="public">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="parentName" type="string">
+            <column name="parent_name" length="25" not-null="true" />
+        </property>
+        <property name="parentSurname" type="string">
+            <column name="parent_surname" length="25" not-null="true" />
+        </property>
+        <set name="childs" inverse="true">
+            <key>
+                <column name="fid" not-null="true" />
+            </key>
+            <one-to-many class="mappings_re.Child" />
+        </set>
+    </class>
+</hibernate-mapping>

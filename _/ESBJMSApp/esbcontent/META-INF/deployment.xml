@@ -1,0 +1,4 @@
+<jbossesb-deployment>  
+  <depends>jboss.esb.esbjmsapp.destination:service=Queue,name=ESBJMSApp_queue_not_gateway</depends>
+  <depends>jboss.esb.esbjmsapp.destination:service=Queue,name=ESBJMSApp_queue_gateway</depends>
+</jbossesb-deployment>

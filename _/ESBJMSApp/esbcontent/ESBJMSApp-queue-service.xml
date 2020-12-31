@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+  <mbean code="org.jboss.jms.server.destination.QueueService" name="jboss.esb.esbjmsapp.destination:service=Queue,name=ESBJMSApp_queue_not_gateway" xmbean-dd="xmdesc/Queue-xmbean.xml">
+	<depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+	<depends>jboss.messaging:service=PostOffice</depends>
+  </mbean>
+  <mbean code="org.jboss.jms.server.destination.QueueService" name="jboss.esb.esbjmsapp.destination:service=Queue,name=ESBJMSApp_queue_gateway" xmbean-dd="xmdesc/Queue-xmbean.xml">
+    <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+	<depends>jboss.messaging:service=PostOffice</depends>
+  </mbean>
+</server>

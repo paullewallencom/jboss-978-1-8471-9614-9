@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name='TempWsBeanService' targetNamespace='http://temperature.ws.bean.com' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://temperature.ws.bean.com' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://temperature.ws.bean.com' version='1.0' xmlns:tns='http://temperature.ws.bean.com' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='toCelsius' type='tns:toCelsius'/>
+   <xs:element name='toCelsiusResponse' type='tns:toCelsiusResponse'/>
+   <xs:element name='toFahrenheit' type='tns:toFahrenheit'/>
+   <xs:element name='toFahrenheitResponse' type='tns:toFahrenheitResponse'/>
+   <xs:complexType name='toCelsius'>
+    <xs:sequence>
+     <xs:element name='fahrenheit' type='xs:float'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='toCelsiusResponse'>
+    <xs:sequence>
+     <xs:element name='returnFahrenheit' type='xs:float'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='toFahrenheit'>
+    <xs:sequence>
+     <xs:element name='celsius' type='xs:float'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='toFahrenheitResponse'>
+    <xs:sequence>
+     <xs:element name='returnCelsius' type='xs:float'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='TempWsBean_toCelsius'>
+  <part element='tns:toCelsius' name='toCelsius'/>
+ </message>
+ <message name='TempWsBean_toCelsiusResponse'>
+  <part element='tns:toCelsiusResponse' name='toCelsiusResponse'/>
+ </message>
+ <message name='TempWsBean_toFahrenheit'>
+  <part element='tns:toFahrenheit' name='toFahrenheit'/>
+ </message>
+ <message name='TempWsBean_toFahrenheitResponse'>
+  <part element='tns:toFahrenheitResponse' name='toFahrenheitResponse'/>
+ </message>
+ <portType name='TempWsBean'>
+  <operation name='toCelsius' parameterOrder='toCelsius'>
+   <input message='tns:TempWsBean_toCelsius'/>
+   <output message='tns:TempWsBean_toCelsiusResponse'/>
+  </operation>
+  <operation name='toFahrenheit' parameterOrder='toFahrenheit'>
+   <input message='tns:TempWsBean_toFahrenheit'/>
+   <output message='tns:TempWsBean_toFahrenheitResponse'/>
+  </operation>
+ </portType>
+ <binding name='TempWsBeanBinding' type='tns:TempWsBean'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='toCelsius'>
+   <soap:operation soapAction='http://temperature.ws.bean.com/toCelsius'/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='toFahrenheit'>
+   <soap:operation soapAction='http://temperature.ws.bean.com/toFahrenheit'/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='TempWsBeanService'>
+  <port binding='tns:TempWsBeanBinding' name='TempWsBeanPort'>
+   <soap:address location='REPLACE_WITH_ACTUAL_URL'/>
+  </port>
+ </service>
+</definitions>

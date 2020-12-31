@@ -1,0 +1,10 @@
+<project name="Create ESB Archive" default="esb" basedir=".">
+	
+<target name="esb">
+	 <jar destfile="${basedir}/ESBJMSApp.esb">
+	    <fileset dir="${basedir}/esbcontent" excludes="lib" />
+	    <fileset dir="${basedir}/build/classes" />
+	  </jar>
+ </target>
+
+</project>

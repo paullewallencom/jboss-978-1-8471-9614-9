@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd"
+      no-conversation-view-id="/DetailsList.xhtml"
+      login-required="true">
+
+   <begin-conversation join="true" flush-mode="MANUAL"/>
+
+   <action execute="#{detailsHome.wire}"/>
+
+   <param name="detailsFrom"/>
+   <param name="detailsId" value="#{detailsHome.detailsId}"/>
+   <param name="testentityFrom"/>
+   <param name="testentityId" value="#{testentityHome.testentityId}"/>
+
+
+
+   <navigation from-action="#{detailsHome.persist}">
+      <rule>
+         <end-conversation/>
+         <redirect view-id="/Details.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{detailsHome.update}">
+      <rule>
+         <end-conversation/>
+         <redirect view-id="/Details.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{detailsHome.remove}">
+      <rule>
+         <end-conversation/>
+         <redirect view-id="/DetailsList.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

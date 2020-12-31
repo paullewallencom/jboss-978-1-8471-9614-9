@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="StrutsProcess">
+ <PROCESS-ITEM NAME="page0" PATH="/WEB-INF/registerbody.jsp"
+  SHAPE="72,120,50,25" SUBTYPE="jsp" TITLE="registerbody.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/success.do"
+   SUBTYPE="confirmed" TARGET="action0" TITLE="success.do" TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page1" PATH="/pages/success.jsp"
+  SHAPE="512,96,50,25" SUBTYPE="jsp" TITLE="success.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#success" NAME="action0" PATH="/success"
+  SHAPE="280,128,139,25" TITLE="registerFormBean" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="success" NAME="forward0"
+   PATH="/pages/success.jsp" TARGET="page1" TITLE="success"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="start" NAME="forward0" PATH="/pages/register.jsp"
+  SHAPE="56,200,64,21" TARGET="page2" TITLE="start" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page2" PATH="/pages/register.jsp"
+  SHAPE="288,200,50,25" SUBTYPE="jsp" TITLE="register.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="java.lang.Exception" NAME="exception0"
+  PATH="/WEB-INF/error.jsp" SHAPE="32,32,91,21" TARGET="page3"
+  TITLE="Exception" TYPE="exception" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page3" PATH="/WEB-INF/error.jsp"
+  SHAPE="304,32,50,25" SUBTYPE="jsp" TITLE="error.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+</PROCESS>

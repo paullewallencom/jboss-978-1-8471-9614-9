@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+
+<suite name="TestActionPOJO Tests" verbose="2" parallel="false">
+   <test name="TestActionPOJO Test">
+     <classes>
+       <class name="org.domain.testSeam.test.TestActionPOJOTest"/>       
+     </classes>
+   </test>	
+</suite>

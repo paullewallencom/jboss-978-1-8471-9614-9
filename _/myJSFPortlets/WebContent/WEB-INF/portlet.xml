@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app
+	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	version="2.0">
+
+	<portlet>
+		<portlet-name>riPortlet</portlet-name>
+		<display-name>JBoss JSF Portlet</display-name>
+		<portlet-class>
+			javax.portlet.faces.GenericFacesPortlet
+		</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/jsf/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.edit</name>
+			<value>/jsf/edit.jsp</value>
+		</init-param>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.help</name>
+			<value>/jsf/help.jsp</value>
+		</init-param>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+			<portlet-mode>EDIT</portlet-mode>
+			<portlet-mode>HELP</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>JBoss JSF Portlet</title>
+		</portlet-info>
+	</portlet>
+</portlet-app>

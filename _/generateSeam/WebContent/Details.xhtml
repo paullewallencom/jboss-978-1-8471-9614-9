@@ -1,0 +1,92 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Details Details</f:facet>
+
+        <s:decorate id="id" template="layout/display.xhtml">
+            <ui:define name="label">Id</ui:define>
+            <h:outputText value="#{detailsHome.instance.id}"/>
+        </s:decorate>
+
+        <s:decorate id="email" template="layout/display.xhtml">
+            <ui:define name="label">Email</ui:define>
+            <h:outputText value="#{detailsHome.instance.email}"/>
+        </s:decorate>
+
+        <s:decorate id="pass" template="layout/display.xhtml">
+            <ui:define name="label">Pass</ui:define>
+            <h:outputText value="#{detailsHome.instance.pass}"/>
+        </s:decorate>
+
+        <s:decorate id="zip" template="layout/display.xhtml">
+            <ui:define name="label">Zip</ui:define>
+            <h:outputText value="#{detailsHome.instance.zip}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/DetailsEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty detailsFrom ? 'DetailsList' : detailsFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Testentity</h:panelGroup>
+        </f:facet>
+    <div class="association" id="testentityParent">
+
+        <h:outputText value="There is no testentity associated with this details."
+                   rendered="#{detailsHome.instance.testentity == null}"/>
+
+        <rich:dataTable var="_testentity"
+                   value="#{detailsHome.instance.testentity}"
+                rendered="#{detailsHome.instance.testentity != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="testentityTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_testentity.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_testentity.name}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtestentity"
+                     value="View"
+                      view="/Testentity.xhtml">
+                    <f:param name="testentityId"
+                           value="#{_testentity.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

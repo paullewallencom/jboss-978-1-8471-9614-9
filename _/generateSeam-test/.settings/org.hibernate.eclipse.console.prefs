@@ -1,0 +1,4 @@
+#Wed Jan 28 00:15:45 PST 2009
+default.configuration=generateSeam
+eclipse.preferences.version=1
+hibernate3.enabled=true
